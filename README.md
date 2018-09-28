@@ -27,7 +27,7 @@ Least MS of is :6.258031077165364<br>
 
 
 
-2.**CV** to find the best **λ **
+2.**CV** to find the best **λ**
 --------------
 Non-CV the best λ for testing 1000-100 is :45<br>
 Non-CV the best MSE for testing 1000-100 is :6.389138883301893<br>
