@@ -58,7 +58,7 @@ CV the best MSE for test 100(1000-100)is :6.828977719053216<br>
 3.Learning curve & data size
 -------------
 <br>
-It would generate a set of beautiful and insightful graph, which show the `relationship` between _Size of data and Learning Curve_. <br>
+It would generate a set of beautiful and insightful graph, which show the **Relationship between Size of data and Learning Curve**. <br>
 
 λ = 1 :<br>
 ![λ = 1"](https://github.com/MarcoXM/CS6930/blob/master/L1.png)
