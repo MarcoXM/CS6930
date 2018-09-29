@@ -4,9 +4,11 @@
 This _file_ will help you to better operate the python file in **_seconds_** !!<br>
 And the code can also be found in [Github](https://github.com/MarcoXM/CS6930)<br>
 
-##Instructions
+Instructions
+-------
 <br>
-Import the file in **erdos**<br>
+**Before running the python file!**<br>
+I have uploaded the dataset file in **erdos**<br>
 And it would answer questions in **three** parts:<br>
 
 1.Best λ for _train & test set_ : <br>
