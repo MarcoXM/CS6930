@@ -8,6 +8,8 @@ Instructions
 -------
 <br>
 **Before running the python file!**<br>
+`/u/erdos/csga/xwang423/HW1_Code/`<br>
+
 I have uploaded the dataset file in **erdos**<br>
 And it would answer questions in **three** parts:<br>
 
