@@ -7,7 +7,7 @@ And the code can also be found in [Github](https://github.com/MarcoXM/CS6930)<br
 Instructions
 -------
 <br>
-**Before running the python file**  <br>
+Before running the python file of ZIP IN BLACK BOARD !!!!  <br>
 `/u/erdos/csga/xwang423/HW1_Code/`<br>
 
 I have uploaded the dataset file in **erdos**<br>
