@@ -8,9 +8,11 @@ Instructions
 -------
 <br>
 Before running the python file of ZIP IN BLACK BOARD !!!!  <br>
-`/u/erdos/csga/xwang423/HW1_Code/`<br>
+
 
 I have uploaded the dataset file in **erdos**<br>
+
+`/u/erdos/csga/xwang423/HW1_Code/`<br>
 And it would answer questions in **three** parts:<br>
 
 1.Best λ for _train & test set_ : <br>
