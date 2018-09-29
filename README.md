@@ -16,7 +16,7 @@ I have uploaded the dataset file in **erdos**<br>
 <br>
 ![data](https://github.com/MarcoXM/CS6930/blob/master/dataset.png)<br>
 <br>
-And I have changed the read_csv function with the address above, please making them match when you run the python.<br>
+And I have **changed** the read_csv function with the **address** above, please making them match when you run the python.<br>
 <br>
 it would answer questions in **three** parts:<br>
 
