@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 24 22:00:26 2018
+
+@author: marcowang
+"""
+
+import numpy as np
+import pandas as pd 
+import heapq
+import matplotlib.pyplot as plt
+
+#Import Trainning set and Test Set.
+df1 = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/spam_train.csv')
+df1.head()
+X_train = df1.drop('class',axis = 1 ).values
+y_train = df1['class'].values.reshape(-1,1)
+Class = df1['class']
+df2 = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/spam_test.csv')
+df2.head()
+X_test = df2.drop('Label',axis = 1 ).drop(' ID',axis = 1).values
+y_test = df2['Label'].values.reshape(-1,1)
+Label = list(df2['Label'])
+
+
+#testing KNN in 1(a)
+k = [1, 5, 11, 21, 41, 61, 81, 101, 201, 401]
+label_1a = []
+test_accuracy = np.empty(len(k))
+def score(list1,list2):
+    
+    if len(list1) == len(list2):
+        print((list(list1 - np.array(list2)).count(0))/len(list1))       
+    else:
+        print('list1 & list2 should have same type' )
+
+for i in k:
+    n = 0
+    elector4all =[]
+    y_pred = []
+    for j in list(range(0,2301)):
+        m = 0
+        listdistance = []
+        outcome = []
+        for u in list(range(0,2300)):
+            distance = (((X_test[n]-X_train[m])**2).sum())**0.5
+            m += 1
+            listdistance.append(distance)
+            electors = heapq.nsmallest(i,listdistance)
+            min_num_index_list = list(map(listdistance.index, electors))
+        
+        elector4all.append(min_num_index_list)
+        for v in elector4all[n]:
+            x = Class.iloc[v]
+            outcome.append(x)
+            oc = np.array(outcome)
+            
+        if oc.sum()*2 > i:
+            y = int(1)
+        
+        else:
+            y = int(0)
+        
+        y_pred.append(y)
+        n += 1
+ 
+test_accuracy = score(y_pred,Label)     
+plt.figure(figsize = (10,7.2))  
+plt.title('k-NN: Varying Number of Neighbors')
+plt.plot(k, test_accuracy, label = 'Testing Accuracy')
+plt.legend()
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Accuracy')      
+        
+       
+ #1(b)
+def z_score(m):
+    Z = []
+    for i in range(len(m.T)):
+        m[:,i] = (m[:,i] - m[:,i].mean())/m[:,i].std()
+        Z.append(m[:,i])
+            
+    return np.array(Z).T
+
+X_z = z_score(X_train)
+X_ztest = z_score(X_test)
+
+
+for i in k:
+    n = 0
+    elector4allz =[]
+    y_predz = []
+    for j in list(range(0,2301)):
+        m = 0
+        listdistance = []
+        outcome = []
+        for u in list(range(0,2300)):
+            distance = (((X_ztest[n]-X_z[m])**2).sum())**0.5
+            m += 1
+            listdistance.append(distance)
+            electors = heapq.nsmallest(i,listdistance)
+            min_num_index_list = list(map(listdistance.index, electors))
+        
+        elector4allz.append(min_num_index_list)
+        for v in elector4allz[n]:
+            x = Class.iloc[v]
+            outcome.append(x)
+            oc = np.array(outcome)
+            
+        if oc.sum()*2 > i:
+            y = int(1)
+        
+        else:
+            y = int(0)
+        
+        y_predz.append(y)
+        n += 1
+ 
+test_accuracy = score(y_predz,Label)     
+plt.figure(figsize = (10,7.2))  
+plt.title('k-NN: Varying Number of Neighbors')
+plt.plot(k, test_accuracy, label = 'Testing Accuracy')
+plt.legend()
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Accuracy')      
