@@ -25,50 +25,74 @@ Label = list(df2['Label'])
 
 
 #testing KNN in 1(a)
-k = [1, 5, 11, 21, 41, 61, 81, 101, 201, 401]
+k = [ 1, 5, 11, 21, 41, 61, 81, 101, 201, 401]
 label_1a = []
 test_accuracy = np.empty(len(k))
 def score(list1,list2):
     
     if len(list1) == len(list2):
-        print((list(list1 - np.array(list2)).count(0))/len(list1))       
+        
+        return (list(list1 - np.array(list2)).count(0))/len(list1)  
     else:
         print('list1 & list2 should have same type' )
 
+
+Matrixdistance =[]
+y_pred = []
+n = 0
+for j in list(range(0,2301)):
+    m = 0
+    listdistance = []
+    outcome = []
+    
+    for u in list(range(0,2300)):
+        distance = (((X_test[n]-X_train[m])**2).sum())**0.5#data = data.drop(data['0'],axis = 1)
+        listdistance.append(distance)
+        m += 1
+    Matrixdistance.append(listdistance)
+    n += 1
+Database = pd.DataFrame(Matrixdistance)    
+
+Database.to_csv('Database.csv',index = False)
+data = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/Database.csv')
+
+
+you = []
 for i in k:
-    n = 0
-    elector4all =[]
+    elector4all = []
+    j = 0
+    v = 0
+    outcome = []
     y_pred = []
-    for j in list(range(0,2301)):
-        m = 0
-        listdistance = []
-        outcome = []
-        for u in list(range(0,2300)):
-            distance = (((X_test[n]-X_train[m])**2).sum())**0.5
-            m += 1
-            listdistance.append(distance)
-            electors = heapq.nsmallest(i,listdistance)
-            min_num_index_list = list(map(listdistance.index, electors))
-        
+    for z in list(range(0,2301)):
+        list_distance = data.iloc[j]
+        target_distance = heapq.nsmallest(i,list_distance)
+        min_num_index_list = list(map(list(list_distance).index, target_distance))
+        j += 1
         elector4all.append(min_num_index_list)
-        for v in elector4all[n]:
-            x = Class.iloc[v]
-            outcome.append(x)
-            oc = np.array(outcome)
-            
+    
+    for d in elector4all:
+        
+        x = Class.iloc[d]
+        
+        oc = np.array(x)
+        
         if oc.sum()*2 > i:
             y = int(1)
         
         else:
             y = int(0)
-        
+        y
+        v += 1
         y_pred.append(y)
-        n += 1
- 
-test_accuracy = score(y_pred,Label)     
+    test_accuracy = score(y_pred,Label)
+    you.append(test_accuracy)
+print(you)
+
+   
 plt.figure(figsize = (10,7.2))  
 plt.title('k-NN: Varying Number of Neighbors')
-plt.plot(k, test_accuracy, label = 'Testing Accuracy')
+plt.plot(k, you, label = 'Testing Accuracy')
 plt.legend()
 plt.xlabel('Number of Neighbors')
 plt.ylabel('Accuracy')      
@@ -85,42 +109,71 @@ def z_score(m):
 
 X_z = z_score(X_train)
 X_ztest = z_score(X_test)
+#
 
 
+Matrixdistance_Z =[]
+y_pred_Z = []
+n = 0
+for j in list(range(0,2301)):
+    m = 0
+    listdistance = []
+    outcome = []
+    
+    for u in list(range(0,2300)):
+        distance = (((X_ztest[n]-X_z[m])**2).sum())**0.5#data = data.drop(data['0'],axis = 1)
+        listdistance.append(distance)
+        m += 1
+    Matrixdistance_Z.append(listdistance)
+    n += 1
+Database_Z = pd.DataFrame(Matrixdistance_Z)    
+
+Database_Z.to_csv('Database_Z.csv',index = False)
+data_Z = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/Database_Z.csv')
+
+
+List_ac_Z = []
+y_set_Z = []
 for i in k:
-    n = 0
-    elector4allz =[]
-    y_predz = []
-    for j in list(range(0,2301)):
-        m = 0
-        listdistance = []
-        outcome = []
-        for u in list(range(0,2300)):
-            distance = (((X_ztest[n]-X_z[m])**2).sum())**0.5
-            m += 1
-            listdistance.append(distance)
-            electors = heapq.nsmallest(i,listdistance)
-            min_num_index_list = list(map(listdistance.index, electors))
+    elector4all_Z = []
+    j = 0
+    v = 0
+    outcome = []
+    y_pred = []
+    for z in list(range(0,2301)):
+        list_distance = data_Z.iloc[j]
+        target_distance = heapq.nsmallest(i,list_distance)
+        min_num_index_list = list(map(list(list_distance).index, target_distance))
+        j += 1
+        elector4all_Z.append(min_num_index_list)
+    
+    for d in elector4all_Z:
         
-        elector4allz.append(min_num_index_list)
-        for v in elector4allz[n]:
-            x = Class.iloc[v]
-            outcome.append(x)
-            oc = np.array(outcome)
-            
+        x = Class.iloc[d]
+        
+        oc = np.array(x)
+        
         if oc.sum()*2 > i:
             y = int(1)
         
         else:
             y = int(0)
-        
-        y_predz.append(y)
-        n += 1
- 
-test_accuracy = score(y_predz,Label)     
+        y
+        v += 1
+        y_pred.append(y)
+    y_set_Z.append(y_pred)    
+    test_accuracy = score(y_pred,Label)
+    List_ac_Z.append(test_accuracy)
+print(List_ac_Z)
+
+   
 plt.figure(figsize = (10,7.2))  
 plt.title('k-NN: Varying Number of Neighbors')
-plt.plot(k, test_accuracy, label = 'Testing Accuracy')
+plt.plot(k, List_ac_Z, label = 'Testing Accuracy')
 plt.legend()
-plt.xlabel('Number of Neighbors')
+plt.xlabel('Number of Neighbors of Z_Score')
 plt.ylabel('Accuracy')      
+
+
+# 2-(C)
+predict = np.array(y_set_Z).T
