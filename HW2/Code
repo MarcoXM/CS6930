@@ -14,9 +14,13 @@ import matplotlib.pyplot as plt
 #Import Trainning set and Test Set.
 df1 = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/spam_train.csv')
 df1.head()
+
+#training set and test set 
 X_train = df1.drop('class',axis = 1 ).values
 y_train = df1['class'].values.reshape(-1,1)
 Class = df1['class']
+
+
 df2 = pd.read_csv('/Users/marcowang/Downloads/Xuming_Wang_CS6930_Hw2/spam_test.csv')
 df2.head()
 X_test = df2.drop('Label',axis = 1 ).drop(' ID',axis = 1).values
@@ -24,10 +28,8 @@ y_test = df2['Label'].values.reshape(-1,1)
 Label = list(df2['Label'])
 
 
-#testing KNN in 1(a)
-k = [ 1, 5, 11, 21, 41, 61, 81, 101, 201, 401]
-label_1a = []
-test_accuracy = np.empty(len(k))
+
+#define a function to get accuracy
 def score(list1,list2):
     
     if len(list1) == len(list2):
@@ -36,6 +38,10 @@ def score(list1,list2):
     else:
         print('list1 & list2 should have same type' )
 
+
+#testing KNN in 1(a)
+#get a dataset of distances
+k = [ 1, 5, 11, 21, 41, 61, 81, 101, 201, 401]
 
 Matrixdistance =[]
 y_pred = []
@@ -82,7 +88,7 @@ for i in k:
         
         else:
             y = int(0)
-        y
+        
         v += 1
         y_pred.append(y)
     test_accuracy = score(y_pred,Label)
@@ -99,17 +105,12 @@ plt.ylabel('Accuracy')
         
        
  #1(b)
-def z_score(m):
-    Z = []
-    for i in range(len(m.T)):
-        m[:,i] = (m[:,i] - m[:,i].mean())/m[:,i].std()
-        Z.append(m[:,i])
-            
-    return np.array(Z).T
 
-X_z = z_score(X_train)
-X_ztest = z_score(X_test)
-#
+#standarzation 
+X_train1 = df1.drop('class',axis = 1 )
+X_test1 = df2.drop('Label',axis = 1 ).drop(' ID',axis = 1)
+X_z = np.array((X_train1 - X_train1.mean())/X_train1.std())
+X_ztest = np.array((X_test1 - X_train1.mean())/X_train1.std())
 
 
 Matrixdistance_Z =[]
@@ -158,7 +159,7 @@ for i in k:
         
         else:
             y = int(0)
-        y
+        
         v += 1
         y_pred.append(y)
     y_set_Z.append(y_pred)    
@@ -167,13 +168,21 @@ for i in k:
 print(List_ac_Z)
 
    
-plt.figure(figsize = (10,7.2))  
+plt.figure(figsize = (10,7.2))
 plt.title('k-NN: Varying Number of Neighbors')
 plt.plot(k, List_ac_Z, label = 'Testing Accuracy')
 plt.legend()
 plt.xlabel('Number of Neighbors of Z_Score')
-plt.ylabel('Accuracy')      
+plt.ylabel('Accuracy')   
+plt.show()
 
-
-# 2-(C)
+# Dataframe of predct outcome
 predict = np.array(y_set_Z).T
+predict = pd.DataFrame(predict)
+predict_50 = predict[0:50]
+columns = ['k1', 'k5', 'k11', 'k21', 'k41', 'k61', 'k81', 'k101', 'k201', 'k401']
+predict_50.columns = columns
+predict_50 = predict_50.replace(1,'spam',)
+predict_50 = predict_50.replace(0,'no',)
+predict_50.index=list(df2[' ID'][:50])
+predict_50
