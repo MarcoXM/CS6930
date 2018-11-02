@@ -1,5 +1,4 @@
-# CS6930
-Data ming Courses
+# CS6930 Data ming Courses<br>
 Hey! Guys!
 -----
 
