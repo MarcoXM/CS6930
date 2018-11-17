@@ -152,8 +152,10 @@ for k in k_list:
                 outcome_group.append(group_points)
                 outcome_score.append(score)
             else:
-                pass
-        print(len(outcome_score))    
+                outcome_group.append(group_points)
+                outcome_score.append(score)
+                break
+        print(outcome_score)    
         best = min(outcome_score)# get the lowest SSE, with The final centroid for specific start points.
         best_cluster.append(best)# getting different answer which starts in others points
     mean_SSE = np.mean(best_cluster) #getting the mean
@@ -162,7 +164,7 @@ for k in k_list:
     every_k_mean.append(mean_SSE)
     print('when k is ',k,'the std SSE is',std_SSE)
     every_k_std.append(std_SSE)
-print('finish')  
+print('finish')
 
 
 # In[449]:
