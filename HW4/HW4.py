@@ -65,40 +65,12 @@ X = zdf.values
 zdf.count()
 
 
-# In[462]:
-
-
-def get_newcentroids(X_train_dataframe,group_point):
-    da = defaultdict(list) 
-    n =0
-    for l in sorted(group_point.keys()):
-        a = X_train_dataframe.iloc[group_point[l],:].mean()
-        a = np.array(a)
-        da[n].append(a)
-        n +=1
-    return da
-
-def get_SSE(group_point):
-    s = 0
-    for i in group_point:
-        a=np.sum((X[group_points[i]]-initial[i])**2)
-        s+= a
-    return s
-
-def get_set(tags):
-    d = defaultdict(list)
-    n = 0
-    for i in tags:
-        d[i].append(n)
-        n = n + 1
-    return d
-
-#getting the distance matrix for every test data
+##getting the distance matrix for every test data
 def get_distance(X_train,random_points):
     matrix_distance = []
     for i in range(X_train.shape[0]):
         list_distance = []
-        for j in random_points.values():
+        for j in random_points:
             d = (np.sum((X_train[i] - j)**2))**0.5
             list_distance.append(d)
         matrix_distance.append(list_distance)
@@ -112,9 +84,29 @@ def get_group(matrix_distance):
         outcome.append(index_dice)
     return outcome
 
+def get_set(tags):
+    d = defaultdict(list)
+    n = 0
+    for i in tags:
+        d[i].append(n)
+        n = n + 1
+    return d
 
-# In[ ]:
+#np.linalg.norm([all_features[j] - final_centroids[i]], axis = 1)
+def get_SSE(group_point):
+    s = 0
+    for i in group_point:
+        a=np.sum((X[group_point[i]]-initial[i])**2)
+        s+= a
+    return s
 
+def get_newcentroids(X_train_dataframe,group_point):
+    da = []
+    for l in sorted(group_point.keys()):
+        a = X_train_dataframe.iloc[group_point[l],:].mean()
+        a = np.array(a)
+        da.append(a)
+    return np.array(da)
 
 k_list = list(range(1,13)) #setting the k from 1 to 12
 every_k_mean = []
@@ -122,6 +114,7 @@ every_k_std = []
 for k in k_list:    
     idice_list = idice.copy()
     idice_list = idice_list[:(25*k)] # getting the start points only could run 25 times 
+    #print(len(idice_list))
     best_cluster = [] #for each condition, we get the final/lowest SSE
     while len(idice_list) != 0: # picking the points to iterate
         a = [] 
@@ -131,29 +124,36 @@ for k in k_list:
         #getting the initial seed for the iteration
         #print(len(idice_list))
         #print(a)
-        initial = defaultdict(list) # 
-
-        n = 0
+        initial = [] # 
         for initial_centroid in a:
-            initial[n].append(X[initial_centroid])
-            n+=1 #
+            initial.append(X[initial_centroid])#
+        initial = np.array(initial)
         #print(initial)
         #print('initial completion !!!!')
 
         outcome_group = []
         outcome_score = []
-        for round_try in iteration: #interation is a 50 instance
+        for round_try in range(50): #interation is a 50 instance
             seed = initial.copy()
+            #print(seed)
             dis = get_distance(X,seed)
             run = get_group(dis)
+            #print(run)
             group_points = get_set(run)
-            #print(type(group_points))
+            
+            #print(group_points)
             score = get_SSE(group_points)
             #print(score)
             next_seed = get_newcentroids(zdf,group_points)
-            initial = next_seed.copy()
-            outcome_group.append(group_points)
-            outcome_score.append(score)
+            #print(seed)
+            #print(next_seed)
+            if np.array_equal(seed,next_seed)== False:
+                initial = next_seed.copy()
+                outcome_group.append(group_points)
+                outcome_score.append(score)
+            else:
+                pass
+        print(len(outcome_score))    
         best = min(outcome_score)# get the lowest SSE, with The final centroid for specific start points.
         best_cluster.append(best)# getting different answer which starts in others points
     mean_SSE = np.mean(best_cluster) #getting the mean
@@ -162,7 +162,7 @@ for k in k_list:
     every_k_mean.append(mean_SSE)
     print('when k is ',k,'the std SSE is',std_SSE)
     every_k_std.append(std_SSE)
-print('finish')    
+print('finish')  
 
 
 # In[449]:
