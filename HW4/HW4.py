@@ -211,8 +211,38 @@ plt.show()
 
 
 
-# In[ ]:
+# Q3
+C1 = {(1, 1),(2, 2),(3, 3)} 
+C2 = {(5, 2),(6, 2),(7, 2),(8, 2),(9, 2)}
 
+#unzipping into array
+a1,b1,c1 = [np.array(i) for i in C1]
+a2,b2,c2,d2,e2 = [np.array(i) for i in C2]
+N1 = len(C1)
+N2 = len(C2)
 
+#getting the mean in each sets and whole points
+u1 = (a1+b1+c1)/N1
+u2 = (a2+b2+c2+d2+e2)/N2
+u = (a1+b1+c1+a2+b2+c2+d2+e2)/(N1+N2)
+
+#unzipping into array
+a1,b1,c1 = [np.array(i) for i in C1]
+a2,b2,c2,d2,e2 = [np.array(i) for i in C2]
+N1 = len(C1)
+N2 = len(C2)
+
+#getting the mean in each sets and whole points
+u1 = (a1+b1+c1)/N1
+u2 = (a2+b2+c2+d2+e2)/N2
+u = (a1+b1+c1+a2+b2+c2+d2+e2)/(N1+N2)
+
+Sb1 = (np.mat(u1 - u).T *np.mat(u1 - u))*N1
+Sb2 = (np.mat(u2 - u).T *np.mat(u2 - u))*N2
+
+SB = Sb1+Sb2
+np.trace(SB)
+
+np.trace(SB)/np.trace(Sw)# Answer!
 
 
