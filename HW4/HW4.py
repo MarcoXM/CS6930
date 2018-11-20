@@ -167,14 +167,39 @@ for k in k_list:
 print('finish')
 
 
-# In[449]:
+column_names = ['k', 'µk', 'µk − 2σk','µk + 2σk']
+low = np.array(every_k_mean) - np.array(every_k_std)*2
+low = list(low)
+high = np.array(every_k_mean) + np.array(every_k_std)*2
+high = list(high)
+answer = {'k':k_list,
+          'µk':every_k_mean,
+          'µk − 2σk':low,
+          'µk + 2σk':high}
+answer_df = pd.DataFrame(answer)
+answer_df
 
-
-mean = np.array(zdf.mean())
-np.sum((X - mean)**2)
-
-
-# In[82]:
+#Ploting Graphes
+sns.set_style('darkgrid')
+fig, ax = plt.subplots()
+plt.plot(answer_df['k'],answer_df['µk'])
+ax.set(title = 'K and its SSE')
+plt.xlabel = 'K'
+plt.ylabel = 'SSE'
+plt.ylim = (-1,50000)
+plt.plot([1,1],[41562.000000,41562.000000],linewidth = 5)
+plt.plot([2,2],[25065.114324,33344.915966],linewidth = 5)
+plt.plot([3,3],[22822.613700,25765.466540],linewidth = 5)
+plt.plot([4,4],[18074.079511,23806.877159],linewidth = 5)
+plt.plot([5,5],[14973.819738,21738.137267],linewidth = 5)
+plt.plot([6,6],[12957.018588,18633.290350],linewidth = 5)
+plt.plot([7,7],[11406.142545,17214.849648],linewidth = 5)
+plt.plot([8,8],[11009.332892,15547.067105],linewidth = 5)
+plt.plot([9,9],[10792.188185,13845.362009],linewidth = 5)
+plt.plot([10,10],[10266.127553,12824.898736],linewidth = 5)
+plt.plot([11,11],[9802.077880,12050.751093],linewidth = 5)
+plt.plot([12,12],[9387.465628,11753.850751],linewidth = 5)
+plt.show()
 
 
 
