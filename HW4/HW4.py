@@ -245,4 +245,21 @@ np.trace(SB)
 
 np.trace(SB)/np.trace(Sw)# Answer!
 
+#Q5 
+Q5 = pd.read_csv('Q5.csv').iloc[:10,:4]
+true_p = 4
+false_n = 1
+false_p = 2
+true_n = 3
 
+#confusion matrix
+con = pd.DataFrame(data = [[4,2],[1,3]],columns=['true_positive','true_negative'],index=['pred_positive','pred_negative'])
+presician = 4/6
+recall = 4/5
+F1 = 8/11
+SPC = 3/5
+
+print('presician is ',presician)
+print('recall is ',recall)
+print('F1 score is ',F1)
+print('SPC is ',SPC)
