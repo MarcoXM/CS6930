@@ -1,9 +1,6 @@
 
 # coding: utf-8
 
-# In[458]:
-
-
 import pandas as pd
 import math
 import numpy as np
@@ -15,16 +12,10 @@ from sklearn.model_selection import KFold
 from collections import defaultdict
 
 
-# In[459]:
-
-
 data = arff.loadarff('segment.arff')
 df = pd.DataFrame(data[0])
 # getting the dataframe from weka!!
 df.shape
-
-
-# In[460]:
 
 
 #getting the features from the dataframe
@@ -58,13 +49,7 @@ c = [775, 1020, 200, 127, 329, 1626, 1515, 651, 658, 328, 1160, 108, 422, 88, 10
 idice = a+b+c
 X = zdf.values
 
-
-# In[461]:
-
-
 zdf.count()
-
-
 ##getting the distance matrix for every test data
 def get_distance(X_train,random_points):
     matrix_distance = []
