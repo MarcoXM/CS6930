@@ -188,14 +188,6 @@ plt.show()
 
 
 
-
-
-# In[ ]:
-
-
-
-
-
 # Q3
 C1 = {(1, 1),(2, 2),(3, 3)} 
 C2 = {(5, 2),(6, 2),(7, 2),(8, 2),(9, 2)}
@@ -229,6 +221,24 @@ SB = Sb1+Sb2
 np.trace(SB)
 
 np.trace(SB)/np.trace(Sw)# Answer!
+
+
+
+#Q4
+#Q4
+q4 = [(0, 0),(1, 2),(1, 6),(2, 3),(3, 4),(5, 1),(4, 2),(5, 3),(6, 2),(7, 4)]
+x = [i[0] for i in q4]
+y = [i[1] for i in q4]
+db_data = pd.DataFrame(q4)
+plt.figure(figsize=(8,6),dpi=300)
+plt.scatter(x,y,)
+db = DBSCAN(eps=2**0.5,min_samples=3).fit(db_data.values)
+db_data[db.labels_ == -1]
+db_data[db.labels_ == 0]
+db_data[db.labels_ == 1]
+
+
+
 
 #Q5 
 Q5 = pd.read_csv('Q5.csv').iloc[:10,:4]
