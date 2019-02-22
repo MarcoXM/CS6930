@@ -1,13 +1,6 @@
 # CS6930 Data ming Courses<br>
-Hey! Guys!
+
 -----
+Implementing various Data Mining Algorithms: KNN, K-means, SVM, SVP, FP-Growth, Decision Tree, Naive Bayes, Ridge Regression, Association Rule Mining, Time Series Warping Path
 
-These are what I learned and used in **Data Minging in Computor Science**<br>
-
-
-Hoping it would help you getting better understanding.
-
-
-
-**Let's start !!!**<br>
-Happy coding!!
+Material from Fordham University Data_Mining_CISC6930
