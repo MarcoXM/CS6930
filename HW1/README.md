@@ -1,5 +1,5 @@
-`CS6930`
-=========
+# HW1
+
 **Linear Regression**<br>
 This _file_ will help you to better operate the python file in **_seconds_** !!<br>
 And the code can also be found in [Github](https://github.com/MarcoXM/CS6930)<br>
