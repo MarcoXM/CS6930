@@ -14,7 +14,7 @@ I have uploaded the dataset file in **erdos**<br>
 
 `/u/erdos/csga/xwang423/HW1_Code/`<br>
 <br>
-![data](https://github.com/MarcoXM/CS6930/blob/master/dataset.png)<br>
+![data](https://github.com/MarcoXM/CS6930_Data_Mining/blob/master/HW1/graph/dataset.png)<br>
 <br>
 And I have **changed** the read_csv function with the **address** above, please making them match when you run the python.<br>
 <br>
@@ -72,13 +72,13 @@ CV the best MSE for test 100(1000-100)is :6.828977719053216<br>
 It would generate a set of beautiful and insightful graph, which show the **Relationship between Size of data and Learning Curve**. <br>
 
 λ = 1 :<br>
-![λ = 1"](https://github.com/MarcoXM/CS6930/blob/master/L_1.png)
+![λ = 1"](https://github.com/MarcoXM/CS6930_Data_Mining/blob/master/HW1/graph/L_1.png)
 
 λ = 25 :<br>
-![λ = 1"](https://github.com/MarcoXM/CS6930/blob/master/L_25.png)
+![λ = 1"](https://github.com/MarcoXM/CS6930_Data_Mining/blob/master/HW1/graph/L_25.png)
 
 λ = 150 :<br>
-![λ = 1"](https://github.com/MarcoXM/CS6930/blob/master/L_150.png)
+![λ = 1"](https://github.com/MarcoXM/CS6930_Data_Mining/blob/master/HW1/graph/L_150.png)
 
 
 
