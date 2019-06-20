@@ -1,5 +1,7 @@
 # CS6930 Data Mining
 
+![](http://progressed.io/bar/100?title=done)
+
 ## Description of Course
 This course introduces ***concepts, algorithms, and techniques of data mining*** as well as the practical issues that arise when applying these algorithms to real-world problems. 
 
